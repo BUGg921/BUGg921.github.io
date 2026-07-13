@@ -38,6 +38,7 @@ const html = await response.text();
 await Promise.all([
   writeFile(new URL("index.html", outputRoot), html),
   writeFile(new URL("404.html", outputRoot), html),
+  writeFile(new URL(".nojekyll", outputRoot), ""),
 ]);
 
 console.log("Static site exported to static-dist/");
