@@ -7,11 +7,11 @@ export const metadata: Metadata = {
     template: "%s｜个人空间",
   },
   description:
-    "一个持续生长的个人网站，用来收纳作品、实用工具、技术实验与长期写作。",
+    "BUGg921 的个人数字空间，用来收纳工具、项目、技术实验与长期写作。",
   keywords: ["个人网站", "独立开发", "工具", "博客", "Vue 3"],
   openGraph: {
-    title: "个人空间｜把好奇心做成能用的东西",
-    description: "作品、工具、实验与写作，都会在这里慢慢发生。",
+    title: "BUGg921｜个人实验室",
+    description: "工具、项目、实验与写作，都会在这里慢慢发生。",
     type: "website",
     locale: "zh_CN",
   },
