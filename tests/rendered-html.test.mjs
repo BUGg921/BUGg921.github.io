@@ -28,11 +28,11 @@ test("server-renders the personal site content", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>个人空间｜把好奇心做成能用的东西<\/title>/i);
-  assert.match(html, /把好奇心/);
-  assert.match(html, /我正在做的事/);
-  assert.match(html, /即将上线的小工具/);
-  assert.match(html, /最近想写的文章/);
+  assert.match(html, /<title>BUGg921｜个人实验室<\/title>/i);
+  assert.match(html, /你好，我是/);
+  assert.match(html, /未来的工具箱/);
+  assert.match(html, /最近想写/);
+  assert.match(html, /视觉灵感来自/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
@@ -53,4 +53,6 @@ test("keeps expansion points and Vue 3 wiring in the source", async () => {
   assert.match(template, /id="tools"/);
   assert.match(template, /id="notes"/);
   assert.match(template, /aria-controls="site-navigation"/);
+  assert.match(template, /toggleTheme/);
+  assert.match(template, /github\.com\/6owen\/arvin/);
 });

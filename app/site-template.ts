@@ -1,226 +1,159 @@
 export const siteTemplate = `
-  <div class="site-shell">
+  <div class="site-shell" :class="{ 'theme-dark': darkMode, 'menu-open': menuOpen }">
     <a class="skip-link" href="#main">跳到主要内容</a>
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="回到首页" @click="closeMenu">
-        <span class="brand-mark">一</span>
-        <span class="brand-copy">
-          <strong>个人空间</strong>
-          <small>PERSONAL LAB</small>
+    <header class="floating-header">
+      <a class="identity" href="#home" aria-label="回到首页" @click="closeMenu">
+        <span class="identity-avatar">B</span>
+        <span class="identity-copy">
+          <strong>BUGg921</strong>
+          <small>个人实验室</small>
         </span>
       </a>
 
-      <nav id="site-navigation" class="site-nav" :class="{ 'is-open': menuOpen }" aria-label="主导航">
-        <a href="#work" @click="closeMenu">正在做</a>
+      <nav id="site-navigation" class="pill-nav" aria-label="主导航">
+        <a href="#home" @click="closeMenu">首页</a>
         <a href="#tools" @click="closeMenu">工具</a>
         <a href="#notes" @click="closeMenu">文章</a>
         <a href="#about" @click="closeMenu">关于</a>
       </nav>
 
-      <a class="header-cta" href="#contact">保持联系 <span aria-hidden="true">↗</span></a>
-
-      <button
-        class="menu-button"
-        type="button"
-        aria-label="打开或关闭导航"
-        aria-controls="site-navigation"
-        :aria-expanded="String(menuOpen)"
-        @click="menuOpen = !menuOpen"
-      >
-        <span></span><span></span>
-      </button>
+      <div class="header-actions">
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="切换明暗主题"
+          :aria-pressed="String(darkMode)"
+          @click="toggleTheme"
+        >
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">☀</span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">☾</span>
+        </button>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="打开或关闭导航"
+          aria-controls="site-navigation"
+          :aria-expanded="String(menuOpen)"
+          @click="menuOpen = !menuOpen"
+        ><span></span><span></span></button>
+      </div>
     </header>
 
-    <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow"><span></span> 独立开发 · 长期写作 · 持续学习</p>
-          <h1 id="hero-title">把好奇心，<br /><em>做成能用的东西。</em></h1>
-          <p class="hero-intro">
-            这里是我的个人数字空间。我会把正在做的项目、顺手的小工具，
-            以及值得反复阅读的思考，慢慢放到这里。
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#work">看看我在做什么 <span aria-hidden="true">↓</span></a>
-            <a class="text-link" href="#about">先认识一下我 <span aria-hidden="true">→</span></a>
+    <main id="main" class="page-wrap">
+      <section id="home" class="bento-grid" aria-label="个人主页卡片">
+        <article class="bento-card hero-card">
+          <div class="hero-noise" aria-hidden="true"></div>
+          <p class="card-overline"><span class="status-dot"></span> ONLINE · 个人主页持续施工中</p>
+          <div class="hero-content">
+            <p class="hello-pill">HELLO, WORLD!</p>
+            <h1>你好，我是<br /><em>BUGg921</em>。</h1>
+            <p>我喜欢把技术、想法和日常的小麻烦，变成真正能被使用的网页与工具。</p>
           </div>
-        </div>
-
-        <div class="hero-object" aria-label="个人网站建设状态卡片">
-          <div class="object-topline">
-            <span>BUILD LOG / 001</span>
-            <span class="live-indicator"><i></i> ONLINE</span>
+          <div class="hero-footer">
+            <a href="#tools">逛逛我的实验室 <span aria-hidden="true">→</span></a>
+            <span>Vue 3 · Build in public</span>
           </div>
-          <div class="orbit-field" aria-hidden="true">
-            <span class="orbit orbit-one"></span>
-            <span class="orbit orbit-two"></span>
-            <span class="core">∞</span>
-            <span class="satellite satellite-one"></span>
-            <span class="satellite satellite-two"></span>
+          <div class="hero-orbit" aria-hidden="true">
+            <span class="orbit-ring"></span>
+            <span class="orbit-core">B</span>
+            <i></i><i></i><i></i>
           </div>
-          <div class="object-caption">
-            <p>当前阶段</p>
-            <strong>正在搭建一片<br />属于自己的互联网角落</strong>
+        </article>
+
+        <article class="bento-card clock-card">
+          <div class="card-topline"><span>NOW</span><span class="mini-dot"></span></div>
+          <div class="clock" v-text="currentTime">--:--</div>
+          <p v-text="dateLabel">北京时间</p>
+          <div class="clock-track" aria-hidden="true"><span></span></div>
+        </article>
+
+        <a class="bento-card github-card" href="https://github.com/BUGg921" target="_blank" rel="noreferrer">
+          <div class="card-topline"><span>GITHUB</span><span aria-hidden="true">↗</span></div>
+          <div class="github-mark" aria-hidden="true">⌘</div>
+          <div><strong>@BUGg921</strong><p>代码、实验与持续更新</p></div>
+        </a>
+
+        <article class="bento-card stack-card">
+          <div class="card-topline"><span>MY STACK</span><span>04</span></div>
+          <div class="stack-list" aria-label="技术栈">
+            <span>Vue 3</span><span>TypeScript</span><span>Java</span><span>AI</span>
           </div>
-          <div class="object-meta">
-            <span><b>03</b> 工具构想</span>
-            <span><b>12</b> 写作主题</span>
-            <span><b>OPEN</b> 持续更新</span>
+          <p>保持简单，做一点有用的东西。</p>
+        </article>
+
+        <article class="bento-card playground-card">
+          <div class="playground-scene" aria-hidden="true">
+            <span class="cloud cloud-one"></span>
+            <span class="cloud cloud-two"></span>
+            <span class="hill hill-back"></span>
+            <span class="hill hill-front"></span>
+            <span class="tiny-window">⌂</span>
           </div>
-        </div>
-      </section>
+          <div class="playground-caption"><span>PLAYGROUND</span><strong>让网页有一点生命力</strong></div>
+        </article>
 
-      <div class="ticker" aria-hidden="true">
-        <div class="ticker-track">
-          <span>BUILD IN PUBLIC</span><i>✦</i><span>MAKE IT USEFUL</span><i>✦</i><span>KEEP LEARNING</span><i>✦</i>
-          <span>BUILD IN PUBLIC</span><i>✦</i><span>MAKE IT USEFUL</span><i>✦</i><span>KEEP LEARNING</span><i>✦</i>
-        </div>
-      </div>
-
-      <section class="section work-section" id="work" aria-labelledby="work-title">
-        <div class="section-heading">
-          <p class="section-index">01 / NOW</p>
-          <h2 id="work-title">我正在做的事</h2>
-          <p>保持小步迭代，把想法推进到真正能被使用的那一步。</p>
-        </div>
-
-        <div class="work-grid">
-          <article class="work-card work-card-featured">
-            <div class="card-kicker"><span>FOCUS</span><b>进行中</b></div>
-            <h3>这个个人网站</h3>
-            <p>不只是一张名片，也是一块可以不断扩建的工作台。工具、博客和项目档案都会从这里长出来。</p>
-            <div class="card-progress" aria-label="项目进度 35%"><span></span></div>
-            <div class="card-footer"><span>Vue 3 · Sites</span><span>35%</span></div>
-          </article>
-
-          <article class="work-card">
-            <div class="card-number">A</div>
-            <div>
-              <p class="card-label">EXPERIMENTS</p>
-              <h3>把重复工作变成工具</h3>
-              <p>从自己每天会遇到的麻烦出发，做简单、专注、没有学习成本的小产品。</p>
-            </div>
-            <span class="card-arrow" aria-hidden="true">↗</span>
-          </article>
-
-          <article class="work-card">
-            <div class="card-number">B</div>
-            <div>
-              <p class="card-label">WRITING</p>
-              <h3>建立可复用的知识</h3>
-              <p>写下过程、判断与踩过的坑，让一次学习变成下一次解决问题的起点。</p>
-            </div>
-            <span class="card-arrow" aria-hidden="true">↗</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="section tools-section" id="tools" aria-labelledby="tools-title">
-        <div class="section-heading heading-row">
-          <div>
-            <p class="section-index">02 / TOOLS</p>
-            <h2 id="tools-title">即将上线的小工具</h2>
+        <article id="tools" class="bento-card tools-card">
+          <div class="card-topline"><span>TOOLS / 未来的工具箱</span><span>01</span></div>
+          <div class="tools-intro">
+            <h2>把重复工作，<br />变成一次点击。</h2>
+            <p>这里会陆续放入我自己也愿意每天使用的小工具。</p>
           </div>
-          <p>先把入口留在这里。每完成一个，它就会从“构想”变成可以直接使用的页面。</p>
-        </div>
-
-        <div class="tools-grid">
-          <article class="tool-card tool-card-dark">
-            <div class="tool-icon" aria-hidden="true">Aa</div>
-            <div class="tool-status">构想中</div>
-            <h3>文本整理箱</h3>
-            <p>把零散文本快速清洗、转换、排版，减少重复的复制与修改。</p>
-            <div class="tool-tags"><span>文本</span><span>效率</span></div>
-          </article>
-
-          <article class="tool-card tool-card-green">
-            <div class="tool-icon" aria-hidden="true">⌁</div>
-            <div class="tool-status">计划中</div>
-            <h3>灵感计时器</h3>
-            <p>用一段足够短的专注时间，让突然出现的想法真正开始发生。</p>
-            <div class="tool-tags"><span>专注</span><span>本地优先</span></div>
-          </article>
-
-          <article class="tool-card tool-card-paper">
-            <div class="tool-icon" aria-hidden="true">#</div>
-            <div class="tool-status">收集中</div>
-            <h3>开发速查册</h3>
-            <p>收藏那些总会忘记、但查到以后只需要十秒就能解决的问题。</p>
-            <div class="tool-tags"><span>开发</span><span>知识库</span></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section notes-section" id="notes" aria-labelledby="notes-title">
-        <div class="section-heading heading-row">
-          <div>
-            <p class="section-index">03 / NOTES</p>
-            <h2 id="notes-title">最近想写的文章</h2>
+          <div class="tool-shelf">
+            <div class="tool-chip"><i>Aa</i><span><b>文本整理箱</b><small>构想中</small></span></div>
+            <div class="tool-chip"><i>⌁</i><span><b>灵感计时器</b><small>计划中</small></span></div>
+            <div class="tool-chip"><i>#</i><span><b>开发速查册</b><small>收集中</small></span></div>
           </div>
-          <span class="coming-badge">BLOG · 即将开放</span>
-        </div>
+        </article>
 
-        <div class="notes-list">
-          <article class="note-row">
-            <time datetime="2026">01</time>
-            <div><p>数字花园</p><h3>为什么我要重新拥有一个个人网站</h3></div>
-            <span>6 MIN READ</span><i aria-hidden="true">↗</i>
-          </article>
-          <article class="note-row">
-            <time datetime="2026">02</time>
-            <div><p>独立开发</p><h3>从“这个步骤好麻烦”开始做一个工具</h3></div>
-            <span>8 MIN READ</span><i aria-hidden="true">↗</i>
-          </article>
-          <article class="note-row">
-            <time datetime="2026">03</time>
-            <div><p>学习系统</p><h3>让一次解决问题的过程可以被反复复用</h3></div>
-            <span>5 MIN READ</span><i aria-hidden="true">↗</i>
-          </article>
-        </div>
-      </section>
-
-      <section class="section about-section" id="about" aria-labelledby="about-title">
-        <div class="about-aside">
-          <p class="section-index">04 / ABOUT</p>
-          <div class="portrait-placeholder" aria-hidden="true">
-            <span>YOUR<br />PHOTO</span>
+        <article id="notes" class="bento-card notes-card">
+          <div class="card-topline"><span>NOTES / 最近想写</span><span>BLOG SOON</span></div>
+          <div class="notes-heading">
+            <h2>写下来，<br />才真正属于自己。</h2>
+            <span class="scribble" aria-hidden="true">✎</span>
           </div>
-          <small>这里可以换成你的照片<br />或一句更私人的签名</small>
-        </div>
-
-        <div class="about-copy">
-          <p class="about-lead">我相信，最好的学习方式之一，<br />是<strong>创造一些真实存在的东西。</strong></p>
-          <div class="about-columns">
-            <p>我对技术、产品和效率工具保持长期兴趣。比起收藏更多信息，我更想把看过的、试过的、失败过的经验，整理成能继续使用的作品。</p>
-            <p>这个网站不会一次完成。它会跟着我的项目和思考一起生长：先有一个清晰的首页，再慢慢长出工具、文章、项目档案，以及更多意外的分支。</p>
+          <div class="note-list">
+            <div class="note-item"><span>01</span><div><small>数字花园</small><strong>为什么我要重新拥有个人网站</strong></div><i>↗</i></div>
+            <div class="note-item"><span>02</span><div><small>独立开发</small><strong>从“好麻烦”开始做一个工具</strong></div><i>↗</i></div>
+            <div class="note-item"><span>03</span><div><small>学习系统</small><strong>让解决问题的过程可以复用</strong></div><i>↗</i></div>
           </div>
-          <div class="principles">
-            <span>01 <b>先做出来</b></span>
-            <span>02 <b>保持简单</b></span>
-            <span>03 <b>持续更新</b></span>
-          </div>
-        </div>
-      </section>
+        </article>
 
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <p class="section-index">05 / SAY HELLO</p>
-        <h2 id="contact-title">如果你也在做<br /><em>有意思的事情，</em><br />很高兴认识你。</h2>
-        <p>社交链接和邮箱可以在下一步换成你的真实信息。</p>
-        <div class="contact-links" aria-label="待补充的联系方式">
-          <span>GITHUB · 待连接</span>
-          <span>EMAIL · 待连接</span>
-        </div>
+        <article class="bento-card memo-card">
+          <span class="tape" aria-hidden="true"></span>
+          <p>Make it small.<br />Make it useful.<br /><strong>Keep shipping.</strong></p>
+          <small>给自己的备忘录</small>
+        </article>
+
+        <article class="bento-card build-card">
+          <div class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+          <code><span>const</span> idea = curiosity<br /><span>await</span> build(idea)<br /><b>✓ shipped</b></code>
+          <div class="build-footer"><span>BUILD LOG</span><span>2026</span></div>
+        </article>
+
+        <article id="about" class="bento-card about-card">
+          <div class="about-stamp" aria-hidden="true">ABOUT<br />ME</div>
+          <div class="about-copy">
+            <span>关于这个网站</span>
+            <h2>一块跟着我一起成长的数字空间。</h2>
+            <p>现在它是一张主页；以后会慢慢长出工具、文章、项目档案，以及更多没有预先计划的分支。</p>
+          </div>
+          <div class="about-principles"><span>先做出来</span><span>保持简单</span><span>持续更新</span></div>
+        </article>
+
+        <a class="bento-card contact-card" href="https://github.com/BUGg921" target="_blank" rel="noreferrer">
+          <span>LET'S CONNECT</span>
+          <h2>来 GitHub<br />找我玩。</h2>
+          <div class="contact-arrow" aria-hidden="true">↗</div>
+          <small>github.com/BUGg921</small>
+        </a>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="brand footer-brand">
-        <span class="brand-mark">一</span>
-        <span class="brand-copy"><strong>个人空间</strong><small>MADE WITH CURIOSITY</small></span>
-      </div>
-      <p>持续建设中 · 2026</p>
-      <a href="#top">回到顶部 ↑</a>
+      <div><strong>BUGg921</strong><span>© 2026 · 持续建设中</span></div>
+      <p>视觉灵感来自 <a href="https://github.com/6owen/arvin" target="_blank" rel="noreferrer">Arvin</a></p>
+      <a href="#home">回到顶部 ↑</a>
     </footer>
   </div>
 `;
