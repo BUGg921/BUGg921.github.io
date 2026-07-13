@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="BUGg921" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta name="description" content="BUGg921 的个人实验室，用来发布工具、文章与项目记录。" />
+    <meta property="og:title" content="BUGg921｜个人实验室" />
+    <meta property="og:description" content="工具、文章、项目与持续发生的想法。" />
+    <meta property="og:url" content="https://bugg921.github.io/" />
+    <meta property="og:image:username" content="BUGg921" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="msapplication-TileColor" content="#f3f3f3" />
+    <title>BUGg921｜个人实验室</title>
+
+    <script>
+      ;(function () {
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
+        if (setting === 'dark' || (prefersDark && setting !== 'light'))
+          document.documentElement.classList.toggle('dark', true)
+      })()
+    </script>
+
+  </head>
+  <body class="font-sans">
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+    <noscript>
+      This website requires JavaScript to function properly. Please enable
+      JavaScript to continue.
+    </noscript>
+  </body>
+</html>
