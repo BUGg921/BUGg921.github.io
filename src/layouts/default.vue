@@ -52,12 +52,8 @@ useEventListener('click', async (e) => {
       </Transition>
     </RouterView>
 
-    <footer class="relative z-[1] mx-auto mt-16 max-w-[970px] flex flex-col items-center justify-between gap-3 border-t border-black/10 px-4 pt-8 text-sm opacity-60 md:flex-row dark:border-white/10">
+    <footer class="relative z-[1] mx-auto mt-16 max-w-[970px] border-t border-black/10 px-4 pt-8 text-center text-sm opacity-60 dark:border-white/10">
       <span>© 2026 BUGg921 · 持续建设中</span>
-      <span>
-        设计来自于
-        <a class="underline underline-offset-4 hover:opacity-60" href="https://github.com/6owen/arvin" target="_blank" rel="noreferrer">Arvin</a>
-      </span>
     </footer>
 
     <Transition name="fade">
