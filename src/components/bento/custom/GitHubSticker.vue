@@ -1,122 +1,175 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <a
     href="https://github.com/BUGg921"
     target="_blank"
     rel="noreferrer"
     aria-label="访问 BUGg921 的 GitHub"
-    class="pointer-events-auto block h-full w-full overflow-hidden rounded-[10px]"
+    class="github-card pointer-events-auto block h-full w-full overflow-hidden rounded-[10px]"
   >
     <div class="box h-full w-full">
-      <span class="sticker bg bg1">GitHub</span>
-      <span class="sticker bg bg2">GitHub</span>
-      <span class="sticker bg bg3">GitHub</span>
-      <span class="sticker bg bg4">GitHub</span>
-      <span class="sticker bg bg5">GitHub</span>
-      <span class="sticker bg bg6">GitHub</span>
+      <span class="orb orb-left" aria-hidden="true" />
+      <span class="orb orb-right" aria-hidden="true" />
 
-      <span class="sticker text6">GitHub</span>
-      <span class="sticker text5">GitHub</span>
-      <span class="sticker text4">GitHub</span>
-      <span class="sticker text3">GitHub</span>
-      <span class="sticker text2">GitHub</span>
-      <span class="sticker text1">GitHub</span>
+      <div class="content">
+        <div class="brand-row">
+          <span class="logo-wrap" aria-hidden="true">
+            <span class="i-carbon-logo-github logo" />
+          </span>
+          <span class="brand-name">GitHub</span>
+        </div>
 
-      <span class="sticker text">GitHub</span>
+        <div class="profile-row">
+          <span>@BUGg921</span>
+          <span class="visit">
+            查看主页
+            <span class="i-carbon-arrow-up-right arrow" aria-hidden="true" />
+          </span>
+        </div>
+      </div>
     </div>
   </a>
 </template>
 
 <style scoped>
-.box{
-  margin: auto;
-  font-size: clamp(38px, 6vw, 70px);
-  color: #ffffff;
+.github-card {
+  color: #fff;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.box {
   position: relative;
-
-  font-family: 'Cherry Bomb One', cursive;
-  background-image: radial-gradient(farthest-corner circle at top right in oklab, oklch(80% .4 222) 0%, oklch(35% .5 313) 100%);
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.32), transparent 24%),
+    linear-gradient(125deg, #6d28d9 0%, #4f46e5 45%, #0284c7 72%, #06b6d4 100%);
 }
 
-.sticker{
+.box::after {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  content: '';
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.55), transparent 78%);
 }
 
-.bg{
-  -webkit-text-stroke: 20px #fff;
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(20px, 4vw, 34px);
 }
 
-.bg2{
-  left: calc(50% + 8px);
-  top: calc(50% + 8px);
-}
-.bg3{
-  left: calc(50% + 20px);
-  top: calc(50% + 20px);
-}
-.bg4{
-  left: calc(50% + 26px);
-  top: calc(50% + 26px);
-}
-.bg5{
-  left: calc(50% + 32px);
-  top: calc(50% + 32px);
-}
-.bg6{
-  left: calc(50% + 38px);
-  top: calc(50% + 38px);
+.brand-row,
+.profile-row,
+.visit {
+  display: flex;
+  align-items: center;
 }
 
-.text{
-  color: #FFF;
-  -webkit-text-stroke: 6px #132043;
+.brand-row {
+  gap: clamp(12px, 2vw, 20px);
 }
 
-.text1{
-  color: #337CCF;
-  -webkit-text-stroke: 4px #132043;
-  left: calc(50% + 8px);
-  top: calc(50% + 8px);
+.logo-wrap {
+  display: grid;
+  width: clamp(42px, 5vw, 58px);
+  height: clamp(42px, 5vw, 58px);
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: #111827;
+  box-shadow: 0 10px 30px rgba(10, 17, 48, 0.25);
 }
 
-.text2{
-  color: #C8E4B2;
-  -webkit-text-stroke: 4px #132043;
-  left: calc(50% + 14px);
-  top: calc(50% + 14px);
+.logo {
+  width: 58%;
+  height: 58%;
 }
 
-.text3{
-  color: #FFD9B7;
-  -webkit-text-stroke: 4px #132043;
-  left: calc(50% + 20px);
-  top: calc(50% + 20px);
+.brand-name {
+  color: #fff;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  text-shadow: 0 3px 14px rgba(15, 23, 42, 0.28);
 }
 
-.text4{
-  color: #FF6969;
-  -webkit-text-stroke: 4px #132043;
-  left: calc(50% + 26px);
-  top: calc(50% + 26px);
+.profile-row {
+  justify-content: space-between;
+  gap: 16px;
+  color: rgba(255, 255, 255, 0.86);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: clamp(12px, 1.5vw, 16px);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-.text5{
-  color: #DE006B;
-  -webkit-text-stroke: 4px #132043;
-  left: calc(50% + 32px);
-  top: calc(50% + 32px);
+.visit {
+  gap: 6px;
+  white-space: nowrap;
 }
 
-.text6{
-  color: #A203CB;
-  -webkit-text-stroke: 4px #132043;
-  left: calc(50% + 38px);
-  top: calc(50% + 38px);
+.arrow {
+  width: 1.15em;
+  height: 1.15em;
+  transition: transform 180ms ease;
+}
+
+.github-card:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+.orb {
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.orb-left {
+  right: 22%;
+  bottom: -72px;
+  width: 170px;
+  height: 170px;
+  background: rgba(196, 181, 253, 0.2);
+}
+
+.orb-right {
+  top: -80px;
+  right: -36px;
+  width: 190px;
+  height: 190px;
+  background: rgba(103, 232, 249, 0.25);
+}
+
+@media (max-width: 520px) {
+  .content {
+    padding: 18px;
+  }
+
+  .profile-row {
+    font-size: 11px;
+  }
+
+  .visit {
+    font-size: 0;
+  }
+
+  .arrow {
+    width: 18px;
+    height: 18px;
+  }
 }
 </style>
