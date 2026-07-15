@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { PROJECTS, SITE, navFilter } from '../src/config/param'
+import { TOOLS } from '../src/config/tools'
 
 describe('personal site configuration', () => {
   it('uses the BUGg921 identity and links', () => {
@@ -9,6 +10,12 @@ describe('personal site configuration', () => {
   })
 
   it('keeps the planned content sections available', () => {
-    expect(navFilter.map(item => item.label)).toEqual(['首页', '文章', '项目'])
+    expect(navFilter.map(item => item.label)).toEqual(['首页', '工具', '文章', '项目'])
+  })
+
+  it('registers the first three local tools with unique routes', () => {
+    expect(TOOLS.map(tool => tool.id)).toEqual(['json', 'timestamp', 'codec'])
+    expect(new Set(TOOLS.map(tool => tool.route)).size).toBe(TOOLS.length)
+    expect(TOOLS.every(tool => tool.tags.includes('本地处理'))).toBe(true)
   })
 })

@@ -8,7 +8,9 @@ import HeaderNav from './Nav.vue'
     id="nav-bg"
     class="fixed left-0 top-0 z-[2] h-fit w-full flex flex-row items-center justify-between px-[3.5vw] py-[18px] md:h-[80px] md:py-unset"
   >
-    <HeaderLogo />
+    <div class="site-logo">
+      <HeaderLogo />
+    </div>
     <HeaderNav />
 
     <div class="grid h-[40px] w-[40px] place-items-center">
@@ -38,6 +40,17 @@ import HeaderNav from './Nav.vue'
 @media (min-width: 768px) {
   #nav-bg {
     height: 80px;
+  }
+}
+
+@media (max-width: 380px) {
+  #nav-bg {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .site-logo {
+    display: none;
   }
 }
 </style>
