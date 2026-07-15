@@ -3,6 +3,7 @@ export const appDescription = 'BUGg921 的个人实验室'
 
 export const navFilter = [
   { label: '首页', route: '/', children: [] },
+  { label: '工具', route: '/tools', children: [] },
   { label: '文章', route: '/blog', children: [] },
   { label: '项目', route: '/project', children: [] },
 ]

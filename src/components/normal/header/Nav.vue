@@ -12,21 +12,20 @@ const navFilterOptionBgMode = computed(() => {
 })
 // ------------------------------------data------------------------------------//
 // 每个 item 的宽高
-const navItemOptions = {
-  width: 80,
-  height: 28,
-  padding: 5,
-}
+const compactNav = useMediaQuery('(max-width: 640px)')
+const navItemWidth = computed(() => compactNav.value ? 58 : 80)
+const navItemHeight = 28
+const navItemPadding = 5
 // 0. 通过序号计算左右移动的位置
 const currentItemIndex = ref<number>(-2)
 // 1. 背景的样式，外面的盒子移动
 const outerBgStyles = computed(() => {
   return {
-    width: `${navItemOptions.width}px`,
-    height: `${navItemOptions.height}px`,
+    width: `${navItemWidth.value}px`,
+    height: `${navItemHeight}px`,
     transform: `
       translate(
-        ${currentItemIndex.value * navItemOptions.width + navItemOptions.padding}px,
+        ${currentItemIndex.value * navItemWidth.value + navItemPadding}px,
         5px
       )
     `,
@@ -38,20 +37,29 @@ const bgInnerRef = ref<HTMLElement>()
 
 // ------------------------------------logic------------------------------------//
 // 1. 获取当前路由，设置动画
-onMounted(() => {
-  const currentRoute = navFilter.find(item => item.route === route.path)
+function normalizePath(path: string) {
+  return path.replace(/index\.html$/, '').replace(/\.html$/, '') || '/'
+}
+
+function findCurrentNavItem(path: string) {
+  const normalizedPath = normalizePath(path)
+  return navFilter.find(item => item.route === '/'
+    ? normalizedPath === '/'
+    : normalizedPath === item.route || normalizedPath.startsWith(`${item.route}/`))
+}
+
+function refreshRoute(path: string) {
+  const currentRoute = findCurrentNavItem(path)
   if (currentRoute)
     refreshActiveTab(currentRoute, navFilter.indexOf(currentRoute))
-})
+  else
+    startJelloHideAnimate()
+}
+
+onMounted(() => refreshRoute(route.path))
 
 watch(() => route.path, (val) => {
-  const currentRoute = navFilter.find(item => item.route === route.path)
-  if (currentRoute)
-    refreshActiveTab(currentRoute, navFilter.indexOf(currentRoute))
-
-  const whiteList = navFilter.map(item => item.route)
-  if (!whiteList.includes(val))
-    startJelloHideAnimate()
+  refreshRoute(val)
 })
 
 // 2. 设置当前选中的 item 的背景
@@ -128,7 +136,7 @@ function startJelloHideAnimate() {
               :to="item.route"
               replace
               class="nav-item"
-              :style="{ height: `${navItemOptions.height}px`, width: `${navItemOptions.width}px` }"
+              :style="{ height: `${navItemHeight}px`, width: `${navItemWidth}px` }"
             >
               {{ item.label }}
             </router-link>
