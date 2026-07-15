@@ -45,8 +45,8 @@ import HeaderNav from './Nav.vue'
 
 @media (max-width: 380px) {
   #nav-bg {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
   }
 
   .site-logo {

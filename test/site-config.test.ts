@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { LINKS, LINK_CATEGORIES } from '../src/config/links'
 import { PROJECTS, SITE, bentoCustomComponentsCfg, navFilter } from '../src/config/param'
 import { SERVICE_CHANNELS } from '../src/config/services'
 import { TOOLS } from '../src/config/tools'
@@ -11,7 +12,13 @@ describe('personal site configuration', () => {
   })
 
   it('keeps the planned content sections available', () => {
-    expect(navFilter.map(item => item.label)).toEqual(['首页', '工具', '服务', '文章', '项目'])
+    expect(navFilter.map(item => item.label)).toEqual(['首页', '工具', '链接', '服务', '文章', '项目'])
+  })
+
+  it('registers grouped bookmark links with unique destinations', () => {
+    expect(LINK_CATEGORIES.map(category => category.id)).toEqual(['mine', 'learning', 'daily'])
+    expect(new Set(LINKS.map(link => link.url)).size).toBe(LINKS.length)
+    expect(LINKS.filter(link => link.external).every(link => link.url.startsWith('https://'))).toBe(true)
   })
 
   it('only exposes service channels with a configured destination', () => {

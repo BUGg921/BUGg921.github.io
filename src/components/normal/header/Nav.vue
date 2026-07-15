@@ -13,7 +13,17 @@ const navFilterOptionBgMode = computed(() => {
 // ------------------------------------data------------------------------------//
 // 每个 item 的宽高
 const compactNav = useMediaQuery('(max-width: 640px)')
-const navItemWidth = computed(() => compactNav.value ? 58 : 80)
+const tinyNav = useMediaQuery('(max-width: 420px)')
+const ultraCompactNav = useMediaQuery('(max-width: 350px)')
+const navItemWidth = computed(() => {
+  if (ultraCompactNav.value)
+    return 40
+  if (tinyNav.value)
+    return 42
+  if (compactNav.value)
+    return 52
+  return 80
+})
 const navItemHeight = 28
 const navItemPadding = 5
 // 0. 通过序号计算左右移动的位置
@@ -187,7 +197,7 @@ function startJelloHideAnimate() {
   cursor: pointer;
   border-radius: 50px;
   -webkit-box-align: center;
-  padding: 0px 16px;
+  padding: 0 8px;
   transition: opacity 0.3s ease 0s;
   display: flex;
   flex-direction: row;
@@ -197,5 +207,17 @@ function startJelloHideAnimate() {
   user-select: none;
   color: var(--nav-text);
   mix-blend-mode: v-bind(navFilterOptionBgMode);
+}
+
+@media (max-width: 640px) {
+  .nav-item {
+    padding: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-container {
+    font-size: 13px;
+  }
 }
 </style>
