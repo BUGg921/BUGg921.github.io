@@ -12,6 +12,7 @@ import Cover from '~/components/bento/custom/Cover.vue'
 import Sticker8 from '~/components/bento/custom/Sticker8.vue'
 import StrokeText from '~/components/bento/custom/StrokeText.vue'
 import GitHubSticker from '~/components/bento/custom/GitHubSticker.vue'
+import WeChatCard from '~/components/bento/custom/WeChatCard.vue'
 
 const commonComponentMap = {
   Profile,
@@ -29,6 +30,7 @@ const customComponentMap = {
   Sticker8,
   StrokeText,
   GitHubSticker,
+  WeChatCard,
 }
 
 function getCommonComponents() {
