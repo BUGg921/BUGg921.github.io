@@ -55,6 +55,7 @@ export const bentoCustomComponentsCfg = [
   { id: 'Cover', x: 2, y: 2, width: 2, height: 2, index: 0 },
   { id: 'Sticker8', x: 4, y: 2, width: 1, height: 1, index: 0 },
   { id: 'StrokeText', x: 5, y: 2, width: 1, height: 1, index: 0 },
+  { id: 'WeChatCard', x: 1, y: 3, width: 1, height: 1, index: 0 },
   { id: 'GitHubSticker', x: 4, y: 3, width: 2, height: 1, index: 0 },
 ]
 
