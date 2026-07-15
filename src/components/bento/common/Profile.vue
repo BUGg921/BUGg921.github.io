@@ -112,6 +112,9 @@ async function typeSentence1() {
       <RouterLink title="文章" class="detail-arrow" to="/blog">
         <Icon icon="carbon:pen" class="h-[18px] w-[18px]" />
       </RouterLink>
+      <RouterLink title="服务" class="detail-arrow" to="/services">
+        <Icon icon="carbon:shopping-bag" class="h-[18px] w-[18px]" />
+      </RouterLink>
       <RouterLink title="项目" class="detail-arrow" to="/project">
         <Icon icon="carbon:tools" class="h-[18px] w-[18px]" />
       </RouterLink>
