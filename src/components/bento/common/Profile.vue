@@ -109,6 +109,9 @@ async function typeSentence1() {
     </div>
 
     <div class="flex flex-row justify-end gap-4 px-6">
+      <RouterLink title="关于我" class="detail-arrow" to="/about">
+        <Icon icon="carbon:user-avatar" class="h-[18px] w-[18px]" />
+      </RouterLink>
       <RouterLink title="文章" class="detail-arrow" to="/blog">
         <Icon icon="carbon:pen" class="h-[18px] w-[18px]" />
       </RouterLink>
