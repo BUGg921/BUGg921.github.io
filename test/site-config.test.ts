@@ -21,7 +21,8 @@ describe('personal site configuration', () => {
   })
 
   it('keeps the planned content sections available', () => {
-    expect(navFilter.map(item => item.label)).toEqual(['首页', '工具', '链接', '服务', '文章', '项目'])
+    expect(navFilter.map(item => item.label)).toEqual(['首页', '工具', '链接', '服务', '文章', '项目', '关于'])
+    expect(navFilter.find(item => item.label === '关于')?.route).toBe('/about')
   })
 
   it('registers grouped bookmark links with unique destinations', () => {
