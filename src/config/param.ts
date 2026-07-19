@@ -8,6 +8,7 @@ export const navFilter = [
   { label: '服务', route: '/services', children: [] },
   { label: '文章', route: '/blog', children: [] },
   { label: '项目', route: '/project', children: [] },
+  { label: '关于', route: '/about', children: [] },
 ]
 
 export const SITE = {
